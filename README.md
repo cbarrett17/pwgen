@@ -1,6 +1,6 @@
 # PWGEN
 
-Low-level Requirements:
+## Low-level Requirements:
 
 1. Project in Java. 
 2. Command line arguments (Similar to PhoneNumberSorter).
