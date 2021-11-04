@@ -17,6 +17,12 @@ public class PWGen {
         // Add a letter usage option
         options.addOption("a", "alpha", false, "Indicates the password must contain alphabetical characters.");
 
+        // Add a number usage option
+        options.addOption("q", "number", false, "Indicates the password must contain numbers.");
+
+        // Add a symbol usage option
+        options.addOption("s", "symbol", false, "Indicates the password must contain symbols.");
+
         // Create a parser
         CommandLineParser parser = new DefaultParser();
 
@@ -32,7 +38,13 @@ public class PWGen {
                 System.out.println(cmd.getOptionValue("length"));
             }
             else if (cmd.hasOption("a") || cmd.hasOption("alpha")) {
-                System.out.println("The password will be made of letters");
+                System.out.println("The password will be made of letters.");
+            }
+            else if (cmd.hasOption("q") || cmd.hasOption("number")) {
+                System.out.println("The password will be made of numbers.");
+            }
+            else if (cmd.hasOption("s") || cmd.hasOption("symbol")) {
+                System.out.println("The password will be made of symbols.");
             }
         }
         catch (org.apache.commons.cli.ParseException p) {
