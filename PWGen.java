@@ -5,6 +5,16 @@ import org.apache.commons.cli.Options;
 
 public class PWGen {
     public static void main(String[] args) {
+        Options options;
+
+        // Create a list of options
+        options = createOptions();
+
+        // Parse the options in args
+        parseCMDOptions(options, args);
+    }
+
+    private static Options createOptions() {
         // Create new options
         Options options = new Options();
 
@@ -23,6 +33,10 @@ public class PWGen {
         // Add a symbol usage option
         options.addOption("s", "symbol", false, "Indicates the password must contain symbols.");
 
+        return options;
+    }
+
+    private static void parseCMDOptions(Options options, String[] args) {
         // Create a parser
         CommandLineParser parser = new DefaultParser();
 
