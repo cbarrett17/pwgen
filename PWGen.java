@@ -22,7 +22,7 @@ public class PWGen {
         options.addOption("h", "help", false, "Prints a list of available commands.");
 
         // Add a required length option
-        options.addOption("n", "length", true, "Denotes the length to be output");
+        options.addOption("n", "length", true, "Denotes the length to be output. There is no default length.");
 
         // Add a letter usage option
         options.addOption("a", "alpha", false, "Indicates the password must contain alphabetical characters.");
@@ -46,7 +46,11 @@ public class PWGen {
 
             // Check if option is present or not
             if (cmd.hasOption("h") || cmd.hasOption("help")) {
-                System.out.println("Help Section goes here!");
+                System.out.printf("Available commands:\n-n, --length: %s\n-a, --alpha: %s\n-q, --number: %s\n-s, --symbol: %s",
+                        options.getOption("n").getDescription(),
+                        options.getOption("a").getDescription(),
+                        options.getOption("q").getDescription(),
+                        options.getOption("s").getDescription());
             }
             else if (cmd.hasOption("n") || cmd.hasOption("length")) {
                 System.out.println(cmd.getOptionValue("length"));
