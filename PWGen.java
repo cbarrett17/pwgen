@@ -38,6 +38,7 @@ public class PWGen {
 
     private static void parseCMDOptions(Options options, String[] args) {
         final int ERROR_EXIT_CODE = 2;
+        int passLength;
 
         // Create a parser
         CommandLineParser parser = new DefaultParser();
@@ -55,25 +56,30 @@ public class PWGen {
                         options.getOption("s").getDescription()
                 );
             }
+            else {
+                // Check if length option is present
+                if (cmd.hasOption("n")) {
+                    passLength = Integer.parseInt(cmd.getOptionValue("length"));
+                    System.out.println(passLength);
+                }
+                else {
+                    throw new IllegalArgumentException();
+                }
 
-            // Check if length option is present
-            if (cmd.hasOption("n")) {
-                System.out.println(Integer.parseInt(cmd.getOptionValue("length")));
-            }
+                // Check if letter usage option is present
+                if (cmd.hasOption("a")) {
+                    System.out.println("The password will be made of letters.");
+                }
 
-            // Check if letter usage option is present
-            if (cmd.hasOption("a")) {
-                System.out.println("The password will be made of letters.");
-            }
+                // Check if number usage option is present
+                if (cmd.hasOption("q")) {
+                    System.out.println("The password will be made of numbers.");
+                }
 
-            // Check if number usage option is present
-            if (cmd.hasOption("q")) {
-                System.out.println("The password will be made of numbers.");
-            }
-
-            // Check if the symbol usage option is present
-            if (cmd.hasOption("s")) {
-                System.out.println("The password will be made of symbols.");
+                // Check if the symbol usage option is present
+                if (cmd.hasOption("s")) {
+                    System.out.println("The password will be made of symbols.");
+                }
             }
         }
         catch (org.apache.commons.cli.ParseException p) {
