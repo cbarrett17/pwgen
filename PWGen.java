@@ -37,6 +37,8 @@ public class PWGen {
     }
 
     private static void parseCMDOptions(Options options, String[] args) {
+        final int ERROR_EXIT_CODE = 2;
+
         // Create a parser
         CommandLineParser parser = new DefaultParser();
 
@@ -44,29 +46,38 @@ public class PWGen {
         try {
             CommandLine cmd = parser.parse(options, args);
 
-            // Check if option is present or not
-            if (cmd.hasOption("h") || cmd.hasOption("help")) {
+            // Check if help option is present or not
+            if (cmd.hasOption("h")) {
                 System.out.printf("Available commands:\n-n, --length: %s\n-a, --alpha: %s\n-q, --number: %s\n-s, --symbol: %s",
                         options.getOption("n").getDescription(),
                         options.getOption("a").getDescription(),
                         options.getOption("q").getDescription(),
-                        options.getOption("s").getDescription());
+                        options.getOption("s").getDescription()
+                );
             }
-            else if (cmd.hasOption("n") || cmd.hasOption("length")) {
-                System.out.println(cmd.getOptionValue("length"));
+
+            // Check if length option is present
+            if (cmd.hasOption("n")) {
+                System.out.println(Integer.parseInt(cmd.getOptionValue("length")));
             }
-            else if (cmd.hasOption("a") || cmd.hasOption("alpha")) {
+
+            // Check if letter usage option is present
+            if (cmd.hasOption("a")) {
                 System.out.println("The password will be made of letters.");
             }
-            else if (cmd.hasOption("q") || cmd.hasOption("number")) {
+
+            // Check if number usage option is present
+            if (cmd.hasOption("q")) {
                 System.out.println("The password will be made of numbers.");
             }
-            else if (cmd.hasOption("s") || cmd.hasOption("symbol")) {
+
+            // Check if the symbol usage option is present
+            if (cmd.hasOption("s")) {
                 System.out.println("The password will be made of symbols.");
             }
         }
         catch (org.apache.commons.cli.ParseException p) {
-            System.exit(2);
+            System.exit(ERROR_EXIT_CODE);
         }
     }
 }
