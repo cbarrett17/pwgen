@@ -60,6 +60,9 @@ public class PWGen {
                 // Check if length option is present
                 if (cmd.hasOption("n")) {
                     passLength = Integer.parseInt(cmd.getOptionValue("length"));
+                    if (passLength <= 0) {
+                        throw new IllegalArgumentException();
+                    }
                     System.out.println(passLength);
                 }
                 else {
