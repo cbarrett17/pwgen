@@ -71,16 +71,19 @@ public class PWGen {
 
                 // Check if letter usage option is present
                 if (cmd.hasOption("a")) {
+                    // Set some flag to true, the password will have letters
                     System.out.println("The password will be made of letters.");
                 }
 
                 // Check if number usage option is present
                 if (cmd.hasOption("q")) {
+                    // Set some flag to true, the password will have letters
                     System.out.println("The password will be made of numbers.");
                 }
 
                 // Check if the symbol usage option is present
                 if (cmd.hasOption("s")) {
+                    // Set some flag to true, the password will have letters
                     System.out.println("The password will be made of symbols.");
                 }
             }
@@ -89,4 +92,7 @@ public class PWGen {
             System.exit(ERROR_EXIT_CODE);
         }
     }
+    // Need a method to construct the passwords with the provided arguments
+
+    // Need a method to return the completed password
 }
