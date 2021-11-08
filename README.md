@@ -1,7 +1,7 @@
 # PWGEN
 # Project Overview
 
-The pwgen program is a command-line utility used to generate random and secure passwords. 
+The pwgen program is a command-line utility program used to generate random and secure passwords. 
 It generates passwords by returning a string of characters from the available characters.
 
 ## Low-level Requirements:
@@ -19,3 +19,5 @@ usage: pwgen
 -a,--alpha      Indicates the password must contain alphabetical characters. <br>
 -q,--number     Indicates the password must contain numbers. <br>
 -s,--symbol     Indicates the password must contain symbols. <br>
+
+pwgen creates a random password using any of the possible specifications listed above that are given. 
