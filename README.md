@@ -13,11 +13,10 @@ It generates passwords by returning a string of characters from the available ch
 
 ## Usage
 usage: pwgen
+Creates a random password using any of the possible specifications listed below that are given. 
 
--h,--help       Prints a list of available commands. <br>
--n,--length     Denotes the length to be output. There is no default length. <br>
--a,--alpha      Indicates the password must contain alphabetical characters. <br>
--q,--number     Indicates the password must contain numbers. <br>
--s,--symbol     Indicates the password must contain symbols. <br>
-
-pwgen creates a random password using any of the possible specifications listed above that are given. 
+-h, --help       Prints a list of available commands. <br>
+-n, --length     Denotes the length to be output. There is no default length. <br>
+-a, --alpha      Indicates the password must contain alphabetical characters. <br>
+-q, --number     Indicates the password must contain numbers. <br>
+-s, --symbol     Indicates the password must contain symbols. <br>
