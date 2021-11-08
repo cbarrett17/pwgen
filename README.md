@@ -13,6 +13,7 @@ It generates passwords by returning a string of characters from the available ch
 
 ## Usage
 usage: pwgen
+
 Creates a random password using any of the possible specifications listed below that are given. 
 
 -h, --help       Prints a list of available commands. <br>
