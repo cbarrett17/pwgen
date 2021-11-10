@@ -12,6 +12,13 @@ public class PWGen {
 
         // Parse the options in args
         parseCMDOptions(options, args);
+
+        // TODO: IMPLEMENTATION
+        // 1) Create sub array lists containing numbers, letters, symbols.
+        // as well as empty possibleChars arrayList and empty password arrayList <- Daniel
+        // 2) IN "parseCMDOptions", if an option exists, add sub array list to possible chars array list <- Caleb
+        // 3) Create function to get random elements and add to pw <- Jamie
+        // 4) Output of password <- Sam
     }
 
     private static Options createOptions() {
