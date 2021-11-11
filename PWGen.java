@@ -25,19 +25,15 @@ public class PWGen {
         // Create new options
         Options options = new Options();
 
-        // Add a help option
+        // All possible options added below
         options.addOption("h", "help", false, "Prints a list of available commands.");
 
-        // Add a required length option
         options.addOption("n", "length", true, "Indicates the length to be output. There is no default length.");
 
-        // Add a letter usage option
         options.addOption("a", "alpha", false, "Indicates the password must contain letters.");
 
-        // Add a number usage option
         options.addOption("q", "number", false, "Indicates the password must contain numbers.");
 
-        // Add a symbol usage option
         options.addOption("s", "symbol", false, "Indicates the password must contain symbols.");
 
         return options;
@@ -64,7 +60,7 @@ public class PWGen {
                 );
             }
             else {
-                // Check if length option is present
+                // Any program run that doesn't include a help command must contain a length at the very least
                 if (cmd.hasOption("n")) {
                     passLength = Integer.parseInt(cmd.getOptionValue("length"));
                     if (passLength <= 0) {
@@ -76,21 +72,17 @@ public class PWGen {
                     throw new IllegalArgumentException();
                 }
 
-                // Check if letter usage option is present
+                // Check if any other option flags are present
+                // TODO: point the result of these options to the corresponding array or method
                 if (cmd.hasOption("a")) {
-                    // Set some flag to true, the password will have letters
                     System.out.println("The password will be made of letters.");
                 }
 
-                // Check if number usage option is present
                 if (cmd.hasOption("q")) {
-                    // Set some flag to true, the password will have letters
                     System.out.println("The password will be made of numbers.");
                 }
 
-                // Check if the symbol usage option is present
                 if (cmd.hasOption("s")) {
-                    // Set some flag to true, the password will have letters
                     System.out.println("The password will be made of symbols.");
                 }
             }
@@ -99,7 +91,4 @@ public class PWGen {
             System.exit(ERROR_EXIT_CODE);
         }
     }
-    // Need a method to construct the passwords with the provided arguments
-
-    // Need a method to return the completed password
 }
