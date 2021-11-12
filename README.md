@@ -20,4 +20,4 @@ Creates a random password using any of the possible specifications listed below 
 -s, --symbol     Indicates the password must contain symbols. <br>
 -n, --length     Denotes the length to be output. There is no default length. <br>
 -a, --alpha      Indicates the password must contain alphabetical characters. <br>
--q, --number     Indicates the password must contain numbers. <br>
+-d, --number     Indicates the password must contain numbers. <br>
