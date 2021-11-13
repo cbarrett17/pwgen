@@ -3,6 +3,9 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PWGen {
     private static final int INVALID_INPUT = 1;
     private static final int INVALID_LENGTH = 2;
@@ -26,7 +29,7 @@ public class PWGen {
         // TODO: IMPLEMENTATION
         // 1) - COMPLETED - Create sub array lists containing numbers, letters, symbols.
         // as well as empty possibleChars arrayList and empty password arrayList <- Daniel
-        // 2) IN "parseCMDOptions", if an option exists, add sub array list to possible chars array list <- Caleb
+        // 2) - COMPLETED - IN "parseCMDOptions", if an option exists, add sub array list to possible chars array list <- Caleb
         // 3) Create function to get random elements and add to pw <- Jamie
         // 4) Output of password <- Sam
     }
@@ -52,9 +55,13 @@ public class PWGen {
 
     private static void parseCMDOptions(Options options, String[] args) {
         int passLength;
+        List<String> possibleChars;
 
         // Create a parser
         CommandLineParser parser = new DefaultParser();
+
+        // Create the list of available characters for the password
+        possibleChars = new ArrayList<>();
 
         // Parse options passed in as CLA
         try {
@@ -66,7 +73,7 @@ public class PWGen {
                         options.getOption("s").getDescription(),
                         options.getOption("n").getDescription(),
                         options.getOption("a").getDescription(),
-                        options.getOption("q").getDescription()
+                        options.getOption("d").getDescription()
                 );
             }
             else {
@@ -83,17 +90,19 @@ public class PWGen {
                 }
 
                 // Check if any other option flags are present
-                // TODO: point the result of these options to the corresponding array or method
                 if (cmd.hasOption("a")) {
                     System.out.println("The password will be made of letters.");
+                    possibleChars.addAll(List.of(ALPHABET));
                 }
 
-                if (cmd.hasOption("q")) {
+                if (cmd.hasOption("d")) {
                     System.out.println("The password will be made of numbers.");
+                    possibleChars.addAll(List.of(NUMERIC));
                 }
 
                 if (cmd.hasOption("s")) {
                     System.out.println("The password will be made of symbols.");
+                    possibleChars.addAll(List.of(SYMBOL));
                 }
             }
         }
