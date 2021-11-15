@@ -16,8 +16,8 @@ usage: pwgen
 
 Creates a random password using any of the possible specifications listed below that are given. 
 
--h, --help       Prints a list of available commands. <br>
--s, --symbol     Indicates the password must contain symbols. <br>
--n, --length     Denotes the length to be output. There is no default length. <br>
--a, --alpha      Indicates the password must contain alphabetical characters. <br>
--d, --number     Indicates the password must contain numbers. <br>
+-h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints a list of available commands. <br>
+-s, --symbol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates the password must contain symbols. <br>
+-n, --length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates the length to be output. There is no default length. <br>
+-a, --alpha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates the password must contain alphabetical characters. <br>
+-d, --number&nbsp;&nbsp;&nbsp;&nbsp;Indicates the password must contain numbers. <br>
