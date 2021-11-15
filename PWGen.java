@@ -9,7 +9,7 @@ import java.util.List;
 public class PWGen {
     private static final int INVALID_INPUT = 1;
     private static final int INVALID_LENGTH = 2;
-
+    private static int length = 0;
     private static final String[] ALPHABET = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
             "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a","b", "c", "d", "e", "f",
             "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
@@ -17,20 +17,24 @@ public class PWGen {
     private static final String[] SYMBOL = {"~", "!", "@", "#", "$","%", "^", "&", "*", "(", ")", "_", "+", "`", "-",
             "=", "{", "}", "[", "]", "|", ";", ":", "'", "\"", ",", "<", ".", ">", "/", "\\", "?"};
 
+
     public static void main(String[] args) {
         Options options;
 
         // Create a list of options
         options = createOptions();
 
-        // Parse the options in args
-        parseCMDOptions(options, args);
+        // Parse the options in args, and set to possible chars list
+        List<String> possibleChars = parseCMDOptions(options, args);
+
+        // generate random password with possibleChars
+        String password = generatePW(possibleChars);
 
         // TODO: IMPLEMENTATION
         // 1) - COMPLETED - Create sub array lists containing numbers, letters, symbols.
         // as well as empty possibleChars arrayList and empty password arrayList <- Daniel
         // 2) - COMPLETED - IN "parseCMDOptions", if an option exists, add sub array list to possible chars array list <- Caleb
-        // 3) Create function to get random elements and add to pw <- Jamie
+        // 3) - COMPLETED - Create function to get random elements and add to pw <- Jamie
         // 4) Output of password <- Sam
     }
 
@@ -53,7 +57,7 @@ public class PWGen {
         return options;
     }
 
-    private static void parseCMDOptions(Options options, String[] args) {
+    private static List<String> parseCMDOptions(Options options, String[] args) {
         int passLength;
         List<String> possibleChars;
 
@@ -84,6 +88,9 @@ public class PWGen {
                         System.exit(INVALID_LENGTH);
                     }
                     System.out.println(passLength);
+
+                    // update global variable length
+                    length = passLength;
                 }
                 else {
                     System.exit(INVALID_INPUT);
@@ -109,5 +116,20 @@ public class PWGen {
         catch (org.apache.commons.cli.ParseException p) {
             System.exit(INVALID_INPUT);
         }
+
+        return possibleChars;
+    }
+
+    private static String generatePW(List<String> possibleChars) {
+        // initialize empty password string builder
+        StringBuilder password = new StringBuilder();
+
+        // Append n chars from random indices of possibleChars to password
+        for (int i = 0; i < length; i++) {
+            int randomNum = (int)(Math.random() * possibleChars.size()); // [0, size)
+            password.append(possibleChars.get(randomNum));
+        }
+
+        return password.toString();
     }
 }
