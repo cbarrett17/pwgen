@@ -12,7 +12,7 @@ It generates passwords by returning a string of characters from the available ch
 4. Creates a password of randomized characters that agrees with the specs passed in.
 
 ## Usage
-usage: pwgen -hsnad <br>
+usage: pwgen --help, --symbol, --length, --alpha, --number <br>
 Creates a random password using any of the possible specifications listed below that are given. 
 
 -h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints a list of available commands. <br>
