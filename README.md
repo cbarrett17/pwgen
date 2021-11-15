@@ -4,7 +4,7 @@
 The pwgen program is a command-line utility program used to generate random and secure passwords. 
 It generates passwords by returning a string of characters from the available characters.
 
-## Low-level Requirements:
+## High-level Features:
 
 1. Project in Java. 
 2. Command line arguments (Similar to PhoneNumberSorter).
@@ -12,8 +12,7 @@ It generates passwords by returning a string of characters from the available ch
 4. Creates a password of randomized characters that agrees with the specs passed in.
 
 ## Usage
-usage: pwgen
-
+usage: pwgen -hsnad <br>
 Creates a random password using any of the possible specifications listed below that are given. 
 
 -h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints a list of available commands. <br>
