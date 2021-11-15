@@ -111,6 +111,12 @@ public class PWGen {
                     System.out.println("The password will be made of symbols.");
                     possibleChars.addAll(List.of(SYMBOL));
                 }
+                // If no other optional requirement is given than the length, all possible characters are added
+                if (!cmd.hasOption("a") && !cmd.hasOption("d") && !cmd.hasOption("s")) {
+                    possibleChars.addAll(List.of(ALPHABET));
+                    possibleChars.addAll(List.of(NUMERIC));
+                    possibleChars.addAll(List.of(SYMBOL));
+                }
             }
         }
         catch (org.apache.commons.cli.ParseException p) {
