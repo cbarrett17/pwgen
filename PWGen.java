@@ -30,12 +30,15 @@ public class PWGen {
         // generate random password with possibleChars
         String password = generatePW(possibleChars);
 
+        // Print password to standard out
+        System.out.println(password);
+
         // TODO: IMPLEMENTATION
         // 1) - COMPLETED - Create sub array lists containing numbers, letters, symbols.
         // as well as empty possibleChars arrayList and empty password arrayList <- Daniel
         // 2) - COMPLETED - IN "parseCMDOptions", if an option exists, add sub array list to possible chars array list <- Caleb
         // 3) - COMPLETED - Create function to get random elements and add to pw <- Jamie
-        // 4) Output of password <- Sam
+        // 4) - COMPLETED - Output of password <- Sam
     }
 
     private static Options createOptions() {
