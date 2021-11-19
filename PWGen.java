@@ -6,10 +6,19 @@ import org.apache.commons.cli.Options;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A simple Command Line Argument program that accepts user flags and outputs a password
+ * corresponding to the user's needs.
+ *
+ * @author cbarrett17@georgefox.edu
+ * @author joconnell19@georgefox.edu
+ * @author dpaxton18@georgefox.edu
+ * @author slorenz19@georgefox.edu
+ */
 public class PWGen {
     private static final int INVALID_INPUT = 1;
-    private static final int INVALID_LENGTH = 2;
-    private static int length = 0;
+    private static final int INVALID_PASSWORD_LENGTH = 2;
+
     private static final String[] ALPHABET = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
             "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a","b", "c", "d", "e", "f",
             "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
@@ -17,30 +26,34 @@ public class PWGen {
     private static final String[] SYMBOL = {"~", "!", "@", "#", "$","%", "^", "&", "*", "(", ")", "_", "+", "`", "-",
             "=", "{", "}", "[", "]", "|", ";", ":", "'", "\"", ",", "<", ".", ">", "/", "\\", "?"};
 
+    private static int _length = 0;
 
+    /**
+     * The main method of the class that runs the methods provided below.
+     * @param args The arguments provided by the user
+     */
     public static void main(String[] args) {
         Options options;
+        List<String> possibleChars;
+        String password;
 
         // Create a list of options
         options = createOptions();
 
         // Parse the options in args, and set to possible chars list
-        List<String> possibleChars = parseCMDOptions(options, args);
+        possibleChars = parseCMDOptions(options, args);
 
         // generate random password with possibleChars
-        String password = generatePW(possibleChars);
+        password = generatePW(possibleChars);
 
         // Print password to standard out
         System.out.println(password);
-
-        // TODO: IMPLEMENTATION
-        // 1) - COMPLETED - Create sub array lists containing numbers, letters, symbols.
-        // as well as empty possibleChars arrayList and empty password arrayList <- Daniel
-        // 2) - COMPLETED - IN "parseCMDOptions", if an option exists, add sub array list to possible chars array list <- Caleb
-        // 3) - COMPLETED - Create function to get random elements and add to pw <- Jamie
-        // 4) - COMPLETED - Output of password <- Sam
     }
 
+    /**
+     * Creates options that the user can use to determine what characters will be used in the password.
+     * @return The set of options
+     */
     private static Options createOptions() {
         // Create new options
         Options options = new Options();
@@ -60,6 +73,12 @@ public class PWGen {
         return options;
     }
 
+    /**
+     * Allows the parsing of the options provided by the user based on the previously constructed option set.
+     * @param options The set of options
+     * @param args The arguments provided by the user
+     * @return The list of available characters from which the password can be built.
+     */
     private static List<String> parseCMDOptions(Options options, String[] args) {
         int passLength;
         List<String> possibleChars;
@@ -76,9 +95,9 @@ public class PWGen {
 
             // Check if help option is present or not
             if (cmd.hasOption("h")) {
-                System.out.printf("Available commands:\n-s, --symbol: %s\n-n, --length: %s\n-a, --alpha:  %s\n-q, --number: %s",
-                        options.getOption("s").getDescription(),
+                System.out.printf("Available commands:\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s",
                         options.getOption("n").getDescription(),
+                        options.getOption("s").getDescription(),
                         options.getOption("a").getDescription(),
                         options.getOption("d").getDescription()
                 );
@@ -88,12 +107,12 @@ public class PWGen {
                 if (cmd.hasOption("n")) {
                     passLength = Integer.parseInt(cmd.getOptionValue("length"));
                     if (passLength <= 0) {
-                        System.exit(INVALID_LENGTH);
+                        System.exit(INVALID_PASSWORD_LENGTH);
                     }
                     System.out.println(passLength);
 
                     // update global variable length
-                    length = passLength;
+                    _length = passLength;
                 }
                 else {
                     System.exit(INVALID_INPUT);
@@ -101,17 +120,14 @@ public class PWGen {
 
                 // Check if any other option flags are present
                 if (cmd.hasOption("a")) {
-                    System.out.println("The password will be made of letters.");
                     possibleChars.addAll(List.of(ALPHABET));
                 }
 
                 if (cmd.hasOption("d")) {
-                    System.out.println("The password will be made of numbers.");
                     possibleChars.addAll(List.of(NUMERIC));
                 }
 
                 if (cmd.hasOption("s")) {
-                    System.out.println("The password will be made of symbols.");
                     possibleChars.addAll(List.of(SYMBOL));
                 }
                 // If no other optional requirement is given than the length, all possible characters are added
@@ -129,16 +145,20 @@ public class PWGen {
         return possibleChars;
     }
 
+    /**
+     * Calls a random accessor to choose characters from the provided array to add to the password.
+     * @param possibleChars All available characters to choose from
+     * @return The completed password
+     */
     private static String generatePW(List<String> possibleChars) {
         // initialize empty password string builder
         StringBuilder password = new StringBuilder();
 
         // Append n chars from random indices of possibleChars to password
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < _length; i++) {
             int randomNum = (int)(Math.random() * possibleChars.size()); // [0, size)
             password.append(possibleChars.get(randomNum));
         }
-
         return password.toString();
     }
 }
