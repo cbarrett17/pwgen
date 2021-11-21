@@ -13,7 +13,7 @@ It generates passwords by returning a string of characters from the available ch
 
 ## Usage
 usage: pwgen --help, --symbol, --length, --alpha, --number <br>
-Creates a random password using any of the possible specifications listed below that are given. 
+Generates a random password using any of the possible specifications listed below that are given. 
 
 -h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints a list of available commands. <br>
 -s, --symbol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates the password must contain symbols. <br>
