@@ -15,11 +15,13 @@ It generates passwords by returning a string of characters from the available ch
 usage: pwgen --help, --symbol, --length, --alpha, --number <br>
 Generates a random password using any of the possible specifications listed below that are given. 
 
-    -h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints a list of available commands.
-    -s, --symbol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates the password must contain symbols.
-    -n, --length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates the length to be output. There is no default length.
-    -a, --alpha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates the password must contain alphabetical characters.
-    -d, --number&nbsp;&nbsp;&nbsp;&nbsp;Indicates the password must contain numbers.
+Available flags:
+
+    -h, --help    Prints a list of available commands.
+    -n, --length  Indicates the length to be output. There is no default length.
+    -s, --symbol  Indicates the password must contain symbols.
+    -a, --alpha   Indicates the password must contain alphabetical characters.
+    -d, --number  Indicates the password must contain numbers.
 
 Status Exit Codes:<br>
 (0) - Successful<br>
