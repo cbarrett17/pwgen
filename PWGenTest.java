@@ -73,10 +73,10 @@ public class PWGenTest
             String printedResult = stdout.getLog();
 
             Pattern digit = Pattern.compile("[0-9]");
-            Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+            Pattern symbol = Pattern.compile ("[!@#$%&*()_+=|<>?{}.,;:`'/\"\\[\\]~-]");
 
             Matcher d = digit.matcher(printedResult);
-            Matcher s = special.matcher(printedResult);
+            Matcher s = symbol.matcher(printedResult);
 
             boolean containsDigit = d.find();
             boolean containsSymbol = s.find();
@@ -99,11 +99,11 @@ public class PWGenTest
         {
             String printedResult = stdout.getLog();
 
-            Pattern letter = Pattern.compile("[a-zA-z]");
-            Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+            Pattern letter = Pattern.compile("[a-zA-Z]");
+            Pattern symbol = Pattern.compile ("[!@#$%&*()_+=|<>?{}.,;:`'/\"\\[\\]~-]");
 
             Matcher l = letter.matcher(printedResult);
-            Matcher s = special.matcher(printedResult);
+            Matcher s = symbol.matcher(printedResult);
 
             boolean containsLetter = l.find();
             boolean containsSymbol = s.find();
@@ -121,11 +121,32 @@ public class PWGenTest
     @Test
     public void TestPWGen_5()
     {
-        final String[] args = {"--symbol", "-n", "8"};
+        final String[] args = {"-s", "-n", "8"};
+
+        exit.checkAssertionAfterwards(() ->
+        {
+            String printedResult = stdout.getLog();
+
+            Pattern letter = Pattern.compile("[a-zA-Z]");
+            Pattern digit = Pattern.compile("[0-9]");
+
+            Matcher l = letter.matcher(printedResult);
+            Matcher d = digit.matcher(printedResult);
+
+            boolean containsLetter = l.find();
+            boolean containsDigit = d.find();
+
+            Assert.assertFalse(containsLetter || containsDigit);
+
+        });
 
         PWGen.main(args);
     }
 
+    /**
+     * Verify that, given an invalid password length, the system exits with the
+     * invalidPassLengthExitCode exit code.
+     */
     @Test
     public void InvalidLengthTest_1() {
         final int invalidPassLengthExitCode = 2;
@@ -136,6 +157,10 @@ public class PWGenTest
         PWGen.main(args);
     }
 
+    /**
+     * Verify that, given an invalid input, the system exits with the
+     * invalidInputExitCode exit code.
+     */
     @Test
     public void InvalidInputTest_1() {
         final int invalidInputExitCode = 1;
@@ -146,6 +171,10 @@ public class PWGenTest
         PWGen.main(args);
     }
 
+    /**
+     * Verify that, given an invalid number input, the system exits with the
+     * invalidNumberInput exit code.
+     */
     @Test
     public void InvalidLengthInputTest_1() {
         final int invalidNumberInput = 3;
