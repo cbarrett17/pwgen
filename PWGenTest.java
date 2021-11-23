@@ -21,7 +21,7 @@ public class PWGenTest
      * Verify commands are displayed when -h is provided.
      */
     @Test
-    public void TestPWGen_1()
+    public void CommandOptionsTest_1()
     {
         final String[] args = {"-h"};
 
@@ -44,7 +44,7 @@ public class PWGenTest
      * Verify the length and that all possible characters are added when only -n is provided.
      */
     @Test
-    public void TestPWGen_2()
+    public void CommandOptionsTest_2()
     {
         final String[] args = {"-n", "5"};
 
@@ -64,7 +64,7 @@ public class PWGenTest
      * Verify only letters are added when -a and -n is provided.
      */
     @Test
-    public void TestPWGen_3()
+    public void CommandOptionsTest_3()
     {
         final String[] args = {"-a", "-n", "8"};
 
@@ -91,7 +91,7 @@ public class PWGenTest
      * Verify only numbers are added when -d and -n is provided.
      */
     @Test
-    public void TestPWGen_4()
+    public void CommandOptionsTest_4()
     {
         final String[] args = {"-d", "-n", "8"};
 
@@ -119,7 +119,7 @@ public class PWGenTest
      * Verify only symbols are added when -s and -n is provided.
      */
     @Test
-    public void TestPWGen_5()
+    public void CommandOptionsTest_5()
     {
         final String[] args = {"-s", "-n", "8"};
 
@@ -137,7 +137,78 @@ public class PWGenTest
             boolean containsDigit = d.find();
 
             Assert.assertFalse(containsLetter || containsDigit);
+        });
 
+        PWGen.main(args);
+    }
+
+    /**
+     * Verify only letters and digits are added when -a, -s and -n is provided.
+     */
+    @Test
+    public void CommandOptionsTest_6()
+    {
+        final String[] args = {"-a", "-d", "-n", "8"};
+
+        exit.checkAssertionAfterwards(() ->
+        {
+            String printedResult = stdout.getLog();
+
+            Pattern symbol = Pattern.compile ("[!@#$%&*()_+=|<>?{}.,;:`'/\"\\[\\]~-]");
+
+            Matcher s = symbol.matcher(printedResult);
+
+            boolean containsSymbol = s.find();
+
+            Assert.assertFalse(containsSymbol);
+        });
+
+        PWGen.main(args);
+    }
+
+    /**
+     * Verify only letters and symbols are added when -a, -s and -n is provided.
+     */
+    @Test
+    public void CommandOptionsTest_7()
+    {
+        final String[] args = {"-a", "-s", "-n", "8"};
+
+        exit.checkAssertionAfterwards(() ->
+        {
+            String printedResult = stdout.getLog();
+
+            Pattern digit = Pattern.compile("[0-9]");
+
+            Matcher d = digit.matcher(printedResult);
+
+            boolean containsDigit = d.find();
+
+            Assert.assertFalse(containsDigit);
+        });
+
+        PWGen.main(args);
+    }
+
+    /**
+     * Verify only digits and symbols are added when -d, -s and -n is provided.
+     */
+    @Test
+    public void CommandOptionsTest_8()
+    {
+        final String[] args = {"-d", "-s", "-n", "8"};
+
+        exit.checkAssertionAfterwards(() ->
+        {
+            String printedResult = stdout.getLog();
+
+            Pattern letter = Pattern.compile("[a-zA-Z]");
+
+            Matcher l = letter.matcher(printedResult);
+
+            boolean containsLetter = l.find();
+
+            Assert.assertFalse(containsLetter);
         });
 
         PWGen.main(args);
