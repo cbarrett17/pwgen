@@ -3,6 +3,8 @@ import org.junit.*;
 import org.junit.rules.*;
 import org.junit.contrib.java.lang.system.*;
 import static org.junit.Assert.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PWGenTest
 {
@@ -26,7 +28,7 @@ public class PWGenTest
         exit.checkAssertionAfterwards(() ->
         {
             String printedResult = stdout.getLog();
-            String expectedResult = String.format("Available commands:\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s\r\n",
+            String expectedResult = String.format("Available commands:\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s",
                     "Indicates the length to be output. " +
                             "There is no default length.",
                     "Indicates the password must contain symbols.",
@@ -44,12 +46,16 @@ public class PWGenTest
     @Test
     public void TestPWGen_2()
     {
-        final String[] args = {"-n", "8"};
+        final String[] args = {"-n", "5"};
 
         exit.checkAssertionAfterwards(() ->
         {
             String printedResult = stdout.getLog();
-        }
+            int printedLength = printedResult.length();
+            int expectedLength = 5 + 2; //there are 2 non-printable characters in the printedResult
+
+            assertEquals(expectedLength, printedLength);
+        });
 
         PWGen.main(args);
     }
@@ -62,6 +68,22 @@ public class PWGenTest
     {
         final String[] args = {"-a", "-n", "8"};
 
+        exit.checkAssertionAfterwards(() ->
+        {
+            String printedResult = stdout.getLog();
+
+            Pattern digit = Pattern.compile("[0-9]");
+            Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+
+            Matcher d = digit.matcher(printedResult);
+            Matcher s = special.matcher(printedResult);
+
+            boolean containsDigit = d.find();
+            boolean containsSymbol = s.find();
+
+            Assert.assertFalse(containsDigit || containsSymbol);
+        });
+
         PWGen.main(args);
     }
 
@@ -72,6 +94,19 @@ public class PWGenTest
     public void TestPWGen_4()
     {
         final String[] args = {"-d", "-n", "8"};
+
+        exit.checkAssertionAfterwards(() ->
+        {
+            String printedResult = stdout.getLog();
+
+            Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+            Matcher m = p.matcher(printedResult);
+            boolean containsSymbol = m.find();
+
+            Assert.assertFalse(printedResult.matches(".*[abcdefghijklmnopqrstuvwxy].*") ||
+                    containsSymbol);
+
+        });
 
         PWGen.main(args);
     }

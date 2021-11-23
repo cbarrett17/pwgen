@@ -48,7 +48,7 @@ public class PWGen {
         password = generatePW(possibleChars);
 
         // Print password to standard out
-        System.out.println(password);
+        System.out.print(password);
     }
 
     /**
