@@ -7,6 +7,9 @@ import static org.junit.Assert.*;
 public class PWGenTest
 {
     @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+
+    @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Rule
@@ -80,6 +83,36 @@ public class PWGenTest
     public void TestPWGen_5()
     {
         final String[] args = {"--symbol", "-n", "8"};
+
+        PWGen.main(args);
+    }
+
+    @Test
+    public void InvalidLengthTest_1() {
+        final int invalidPassLengthExitCode = 2;
+        final String[] args = {"-n", "-1"};
+
+        exit.expectSystemExitWithStatus(invalidPassLengthExitCode);
+
+        PWGen.main(args);
+    }
+
+    @Test
+    public void InvalidInputTest_1() {
+        final int invalidInputExitCode = 1;
+        final String[] args = {"-a", "--hello"};
+
+        exit.expectSystemExitWithStatus(invalidInputExitCode);
+
+        PWGen.main(args);
+    }
+
+    @Test
+    public void InvalidLengthInputTest_1() {
+        final int invalidNumberInput = 3;
+        final String[] args = {"-n", "--hello"};
+
+        exit.expectSystemExitWithStatus(invalidNumberInput);
 
         PWGen.main(args);
     }

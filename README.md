@@ -27,3 +27,4 @@ Status Exit Codes:<br>
 (0) - Successful<br>
 (1) - Invalid Input<br>
 (2) - Invalid Password Length<br>
+(3) - Invalid Number Format (given arg -n)<br>

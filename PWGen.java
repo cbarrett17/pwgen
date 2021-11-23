@@ -18,6 +18,7 @@ import java.util.List;
 public class PWGen {
     private static final int INVALID_INPUT = 1;
     private static final int INVALID_PASSWORD_LENGTH = 2;
+    private static final int LENGTH_NUMBER_FORMAT_ERROR = 3;
 
     private static final String[] ALPHABET = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
             "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a","b", "c", "d", "e", "f",
@@ -109,7 +110,6 @@ public class PWGen {
                     if (passLength <= 0) {
                         System.exit(INVALID_PASSWORD_LENGTH);
                     }
-                    System.out.println(passLength);
 
                     // update global variable length
                     _length = passLength;
@@ -140,6 +140,9 @@ public class PWGen {
         }
         catch (org.apache.commons.cli.ParseException p) {
             System.exit(INVALID_INPUT);
+        }
+        catch (NumberFormatException n) {
+            System.exit(LENGTH_NUMBER_FORMAT_ERROR);
         }
 
         return possibleChars;
