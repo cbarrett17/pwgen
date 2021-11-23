@@ -6,6 +6,12 @@ import static org.junit.Assert.*;
 
 public class PWGenTest
 {
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+
+    @Rule
+    public final SystemOutRule stdout = new SystemOutRule().enableLog().mute();
+
     /**
      * Verify commands are displayed when -h is provided.
      */
@@ -13,6 +19,21 @@ public class PWGenTest
     public void TestPWGen_1()
     {
         final String[] args = {"-h"};
+
+        exit.checkAssertionAfterwards(new Assertion()
+        {
+            public void checkAssertion()
+            {
+                String printedResult = stdout.getLog();
+                String expectedResult = String.format("Available commands:\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s",
+                        "Indicates the length to be output. " +
+                                "There is no default length.",
+                        "Indicates the password must contain symbols.",
+                        "Indicates the password must contain letters.",
+                        "Indicates the password must contain numbers.");
+                Assert.assertEquals(expectedResult, printedResult);
+            }
+        });
 
         PWGen.main(args);
     }
