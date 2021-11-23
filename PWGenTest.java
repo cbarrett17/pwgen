@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A class that extensively tests PWGEN
+ */
 public class PWGenTest
 {
     @Rule
