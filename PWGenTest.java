@@ -20,19 +20,16 @@ public class PWGenTest
     {
         final String[] args = {"-h"};
 
-        exit.checkAssertionAfterwards(new Assertion()
+        exit.checkAssertionAfterwards(() ->
         {
-            public void checkAssertion()
-            {
-                String printedResult = stdout.getLog();
-                String expectedResult = String.format("Available commands:\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s",
-                        "Indicates the length to be output. " +
-                                "There is no default length.",
-                        "Indicates the password must contain symbols.",
-                        "Indicates the password must contain letters.",
-                        "Indicates the password must contain numbers.");
-                Assert.assertEquals(expectedResult, printedResult);
-            }
+            String printedResult = stdout.getLog();
+            String expectedResult = String.format("Available commands:\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s\r\n",
+                    "Indicates the length to be output. " +
+                            "There is no default length.",
+                    "Indicates the password must contain symbols.",
+                    "Indicates the password must contain letters.",
+                    "Indicates the password must contain numbers.");
+            Assert.assertEquals(expectedResult, printedResult);
         });
 
         PWGen.main(args);
@@ -45,6 +42,11 @@ public class PWGenTest
     public void TestPWGen_2()
     {
         final String[] args = {"-n", "8"};
+
+        exit.checkAssertionAfterwards(() ->
+        {
+            String printedResult = stdout.getLog();
+        }
 
         PWGen.main(args);
     }
