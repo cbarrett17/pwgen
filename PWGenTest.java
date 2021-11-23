@@ -52,7 +52,7 @@ public class PWGenTest
         {
             String printedResult = stdout.getLog();
             int printedLength = printedResult.length();
-            int expectedLength = 5 + 2; //there are 2 non-printable characters in the printedResult
+            int expectedLength = 5;
 
             assertEquals(expectedLength, printedLength);
         });
@@ -99,12 +99,16 @@ public class PWGenTest
         {
             String printedResult = stdout.getLog();
 
-            Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-            Matcher m = p.matcher(printedResult);
-            boolean containsSymbol = m.find();
+            Pattern letter = Pattern.compile("[a-zA-z]");
+            Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
 
-            Assert.assertFalse(printedResult.matches(".*[abcdefghijklmnopqrstuvwxy].*") ||
-                    containsSymbol);
+            Matcher l = letter.matcher(printedResult);
+            Matcher s = special.matcher(printedResult);
+
+            boolean containsLetter = l.find();
+            boolean containsSymbol = s.find();
+
+            Assert.assertFalse(containsLetter || containsSymbol);
 
         });
 
