@@ -2,7 +2,7 @@
 
 # define some "targets"
 # example
-target: [dependecies]
+target: [dependencies]
 #	command to build target
 
 # default "all" target
@@ -17,9 +17,9 @@ PWGen.class: PWGen.java
 compile: PWGen.class
 
 # target for running the Java code
-run-length: compile
+run: compile
 	echo "Running..."
-	java PWGen --n
+	java PWGen
 
 PWGen.class: PWGen.java PWGenTest.java
 	javac PWGenTest.java
