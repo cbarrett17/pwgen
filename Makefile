@@ -21,6 +21,7 @@ run: compile
 	echo "Running..."
 	java PWGen
 
+# target for testing the Java code
 PWGen.class: PWGen.java PWGenTest.java
 	javac PWGenTest.java
 
