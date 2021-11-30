@@ -5,6 +5,9 @@ import org.apache.commons.cli.Options;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 
 /**
  * A simple Command Line Argument program that accepts user flags and outputs a password
