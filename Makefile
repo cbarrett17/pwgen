@@ -1,31 +1,21 @@
 # gnu make Makefile
 
+# define some variables
+JCC = javac
+P = PWGen
+PT = PWGenTest
+
 # define some "targets"
 
-target: [dependencies]
-#	command to build target
+default: class-PWGen
 
-# default "all" target
-all: compile
-
-# intermediate target for the Java bytecode
-PWGen.class: PWGen.java
+class-PWGen: $(P).java
+	# command to build target
 	echo "Compiling..."
-	javac PWGen.java
+	$(JCC) $(P).java
 
-# target for compiling the Java code
-compile: PWGen.class
+compile-test: $(PT).class
+	echo "Testing..."
 
-# target for running the Java code
-run: compile
-	echo "Running..."
-	java PWGen
-
-# target for testing the Java code
-PWGen.class: PWGen.java PWGenTest.java
-	javac PWGenTest.java
-
-compile-test: PWGenTest.class
-
-run-test: compile-test
-	java org.junit.runner.JUnitCore PWGenTest
+PWGenTest.class: $(PT).java
+	$(JCC) $(PT).java
