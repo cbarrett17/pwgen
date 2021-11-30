@@ -4,6 +4,7 @@
 JCC = javac
 P = PWGen
 PT = PWGenTest
+SHELL = /bin/sh
 
 # define some "targets"
 
