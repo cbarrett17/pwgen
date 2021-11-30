@@ -1,7 +1,7 @@
 # gnu make Makefile
 
 # define some "targets"
-# example
+
 target: [dependencies]
 #	command to build target
 
