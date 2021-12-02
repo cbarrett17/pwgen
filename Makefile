@@ -1,23 +1,28 @@
 # gnu make Makefile
-PROJECT=PWGen
 
 # define some variables
+PROJECT=PWGen
 JCC = javac
-P = PWGen
 PT = PWGenTest
 SHELL = /bin/sh
 
 # define some "targets"
 
-default: class-PWGen
+default: compile
 
-class-PWGen: $(P).java
+run: compile
 	# command to build target
 	echo "Compiling..."
-	$(JCC) $(P).java
+	$(JCC) $(PROJECT).java
 
-compile-test: $(PT).class
-	echo "Testing..."
+run-en_US: compile
+	java -Duser.language=en -Duser.country=US $(PROJECT)
 
-PWGenTest.class: $(PT).java
-	$(JCC) $(PT).java
+run-es_MX: compile
+	java -Duser.language=es -Duser.country=MX $(PROJECT)
+
+run-fr_FR: compile
+	java -Duser.language=fr -Duser.country=FR $(PROJECT)
+
+run-it_IT: compile
+	java -Duser.language=it -Duser.country=IT $(PROJECT)
