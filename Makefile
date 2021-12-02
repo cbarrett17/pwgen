@@ -1,4 +1,5 @@
 # gnu make Makefile
+PROJECT=PWGen
 
 # define some variables
 JCC = javac
