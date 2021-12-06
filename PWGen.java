@@ -37,6 +37,15 @@ public class PWGen {
      * @param args The arguments provided by the user
      */
     public static void main(String[] args) {
+        // determine the locale
+        Locale locale = Locale.getDefault();
+        // load localized string resources
+        ResourceBundle strings = ResourceBundle.getBundle("PWGEN", locale);
+        // get localized strings
+        String helpOpt = strings.getString("helpOpt");
+        String helpMes = strings.getString("helpMes")
+
+
         Options options;
         List<String> possibleChars;
         String password;
@@ -63,7 +72,7 @@ public class PWGen {
         Options options = new Options();
 
         // All possible options added below
-        options.addOption("h", "help", false, "Prints a list of available commands.");
+        options.addOption("h", "help", false, helpOpt);
 
         options.addOption("n", "length", true, "Indicates the length to be output. " +
             "There is no default length.");
@@ -99,7 +108,7 @@ public class PWGen {
 
             // Check if help option is present or not
             if (cmd.hasOption("h")) {
-                System.out.printf("Available commands:\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s",
+                System.out.printf(helpMes + "\n-n, --length: %s\n-s, --symbol: %s\n-a, --alpha:  %s\n-d, --number: %s",
                         options.getOption("n").getDescription(),
                         options.getOption("s").getDescription(),
                         options.getOption("a").getDescription(),
