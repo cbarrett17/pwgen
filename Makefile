@@ -27,3 +27,6 @@ run-fr_FR: compile
 
 run-it_IT: compile
 	java -cp $(CLASSPATH) -Duser.language=it -Duser.country=IT $(PROJECT)
+
+run-de_DE: compile
+	java -cp $(CLASSPATH) -Duser.language=de -Duser.country=DE $(PROJECT)
