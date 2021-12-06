@@ -38,7 +38,7 @@ public class PWGen {
      */
     public static void main(String[] args) {
         // determine the locale
-        Locale locale = Locale.getDefault();
+        Locale locale = Locale.FRANCE;
         // load localized string resources
         ResourceBundle strings = ResourceBundle.getBundle("PWGEN", locale);
 
@@ -66,7 +66,10 @@ public class PWGen {
     private static Options createOptions(ResourceBundle strings) {
         // get localized strings
         String helpOpt = strings.getString("helpOpt");
-        String helpMes = strings.getString("helpMes");
+        String lenOpt = strings.getString("lenOpt");
+        String alphOpt = strings.getString("alphOpt");
+        String numOpt = strings.getString("numOpt");
+        String symOpt = strings.getString("symOpt");
 
         // Create new options
         Options options = new Options();
@@ -74,14 +77,14 @@ public class PWGen {
         // All possible options added below
         options.addOption("h", "help", false, helpOpt);
 
-        options.addOption("n", "length", true, "Indicates the length to be output. " +
+        options.addOption("n", "length", true, lenOpt +
             "There is no default length.");
 
-        options.addOption("a", "alpha", false, "Indicates the password must contain letters.");
+        options.addOption("a", "alpha", false, alphOpt);
 
-        options.addOption("d", "number", false, "Indicates the password must contain numbers.");
+        options.addOption("d", "number", false, numOpt);
 
-        options.addOption("s", "symbol", false, "Indicates the password must contain symbols.");
+        options.addOption("s", "symbol", false, symOpt);
 
         return options;
     }
