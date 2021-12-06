@@ -41,20 +41,16 @@ public class PWGen {
         Locale locale = Locale.getDefault();
         // load localized string resources
         ResourceBundle strings = ResourceBundle.getBundle("PWGEN", locale);
-        // get localized strings
-        String helpOpt = strings.getString("helpOpt");
-        String helpMes = strings.getString("helpMes")
-
 
         Options options;
         List<String> possibleChars;
         String password;
 
         // Create a list of options
-        options = createOptions();
+        options = createOptions(strings);
 
         // Parse the options in args, and set to possible chars list
-        possibleChars = parseCMDOptions(options, args);
+        possibleChars = parseCMDOptions(options, args, strings);
 
         // generate random password with possibleChars
         password = generatePW(possibleChars);
@@ -67,7 +63,11 @@ public class PWGen {
      * Creates options that the user can use to determine what characters will be used in the password.
      * @return The set of options
      */
-    private static Options createOptions() {
+    private static Options createOptions(ResourceBundle strings) {
+        // get localized strings
+        String helpOpt = strings.getString("helpOpt");
+        String helpMes = strings.getString("helpMes");
+
         // Create new options
         Options options = new Options();
 
@@ -92,9 +92,12 @@ public class PWGen {
      * @param args The arguments provided by the user
      * @return The list of available characters from which the password can be built.
      */
-    private static List<String> parseCMDOptions(Options options, String[] args) {
+    private static List<String> parseCMDOptions(Options options, String[] args, ResourceBundle strings) {
         int passLength;
         List<String> possibleChars;
+
+        // get help mes
+        String helpMes = strings.getString("helpMes");
 
         // Create a parser
         CommandLineParser parser = new DefaultParser();
