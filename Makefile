@@ -16,6 +16,14 @@ compile: PWGen.java
 	echo "Compiling..."
 	$(JCC) -cp $(CLASSPATH) $(PROJECT).java
 
+PWGenTest.class: PWGenTest.java
+	$(JCC) -cp $(CLASSPATH) $(PT).java
+
+test: PWGenTest.class
+	# command to run Test class
+	echo "Testing..."
+	java -cp $(CLASSPATH) org.junit.runner.JUnitCore PWGenTest
+
 run-en_US: compile
 	java -cp $(CLASSPATH) -Duser.language=en -Duser.country=US $(PROJECT)
 
