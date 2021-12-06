@@ -4,25 +4,26 @@
 PROJECT=PWGen
 JCC = javac
 PT = PWGenTest
-SHELL = /bin/sh
+SHELL = bin/sh
+CLASSPATH = "system-rules-1.18.0.jar;commons-cli-1.5.0.jar;lib/*;."
 
 # define some "targets"
 
 default: compile
 
-run: compile
+compile: PWGen.java
 	# command to build target
 	echo "Compiling..."
-	$(JCC) $(PROJECT).java
+	$(JCC) -cp $(CLASSPATH) $(PROJECT).java
 
 run-en_US: compile
-	java -Duser.language=en -Duser.country=US $(PROJECT)
+	java -cp $(CLASSPATH) -Duser.language=en -Duser.country=US $(PROJECT)
 
 run-es_MX: compile
-	java -Duser.language=es -Duser.country=MX $(PROJECT)
+	java -cp $(CLASSPATH) -Duser.language=es -Duser.country=MX $(PROJECT)
 
 run-fr_FR: compile
-	java -Duser.language=fr -Duser.country=FR $(PROJECT)
+	java -cp $(CLASSPATH) -Duser.language=fr -Duser.country=FR $(PROJECT)
 
 run-it_IT: compile
-	java -Duser.language=it -Duser.country=IT $(PROJECT)
+	java -cp $(CLASSPATH) -Duser.language=it -Duser.country=IT $(PROJECT)
