@@ -38,7 +38,7 @@ public class PWGen {
      */
     public static void main(String[] args) {
         // determine the locale
-        Locale locale = Locale.FRANCE;
+        Locale locale = Locale.getDefault();
         // load localized string resources
         ResourceBundle strings = ResourceBundle.getBundle("PWGEN", locale);
 
