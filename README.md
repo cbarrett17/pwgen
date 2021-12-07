@@ -10,6 +10,7 @@ It generates passwords by returning a string of characters from the available ch
 2. Command line arguments (Similar to PhoneNumberSorter).
 3. Passes in arguments that specify character length, character types, and case type. 
 4. Creates a password of randomized characters that agrees with the specs passed in.
+5. Translates resources into the following locales: English, French, Italian, German, and Spanish.
 
 ## Usage
 usage: pwgen --help, --symbol, --length, --alpha, --number <br>
