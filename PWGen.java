@@ -40,7 +40,7 @@ public class PWGen {
         // determine the locale
         Locale locale = Locale.getDefault();
         // load localized string resources
-        ResourceBundle strings = ResourceBundle.getBundle("PWGEN", locale);
+        ResourceBundle strings = ResourceBundle.getBundle("PWGen", locale);
 
         Options options;
         List<String> possibleChars;
@@ -67,7 +67,7 @@ public class PWGen {
         // get localized strings
         String helpOpt = strings.getString("helpOpt");
         String lenOpt = strings.getString("lenOpt");
-        String alphOpt = strings.getString("alphOpt");
+        String alphaOpt = strings.getString("alphaOpt");
         String numOpt = strings.getString("numOpt");
         String symOpt = strings.getString("symOpt");
 
@@ -80,7 +80,7 @@ public class PWGen {
         options.addOption("n", "length", true, lenOpt +
             "There is no default length.");
 
-        options.addOption("a", "alpha", false, alphOpt);
+        options.addOption("a", "alpha", false, alphaOpt);
 
         options.addOption("d", "number", false, numOpt);
 
