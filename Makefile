@@ -55,7 +55,11 @@ run-demo2: compile run-en_US
 	java -cp $(CLASSPATH) -Duser.language=en -Duser.country=US $(PROJECT) $(DEFAULT_LENGTH_RUN) -a
 
 # run an invalid command to show the error handling
-run-demo3: compile run-demo3-pt1
-
 run-demo3-pt1: compile
 	java -cp $(CLASSPATH) $(PROJECT) -j
+
+run-demo3-pt2: compile
+	java -cp $(CLASSPATH) $(PROJECT) -n -1
+
+run-demo3-pt3: compile
+	java -cp $(CLASSPATH) $(PROJECT) -n HI
