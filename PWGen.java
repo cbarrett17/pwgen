@@ -76,8 +76,7 @@ public class PWGen {
         // All possible options added below
         options.addOption("h", "help", false, helpOpt);
 
-        options.addOption("n", "length", true, lenOpt +
-            "There is no default length.");
+        options.addOption("n", "length", true, lenOpt);
 
         options.addOption("a", "alpha", false, alphaOpt);
 
