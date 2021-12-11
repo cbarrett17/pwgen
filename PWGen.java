@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-
 /**
  * A simple Command Line Argument program that accepts user flags and outputs a password
  * corresponding to the user's needs.
@@ -126,6 +125,7 @@ public class PWGen {
                 if (cmd.hasOption("n")) {
                     passLength = Integer.parseInt(cmd.getOptionValue("length"));
                     if (passLength <= 0) {
+                        System.err.println("\nERROR: INVALID PASSWORD LENGTH\nSYSTEM EXIT 2\n");
                         System.exit(INVALID_PASSWORD_LENGTH);
                     }
 
@@ -133,6 +133,7 @@ public class PWGen {
                     _length = passLength;
                 }
                 else {
+                    System.err.println("\nERROR: INVALID COMMAND GIVEN\nSYSTEM EXIT 1\n");
                     System.exit(INVALID_INPUT);
                 }
 
@@ -157,9 +158,11 @@ public class PWGen {
             }
         }
         catch (org.apache.commons.cli.ParseException p) {
+            System.err.println("\nERROR: INVALID COMMAND GIVEN\nSYSTEM EXIT 1\n");
             System.exit(INVALID_INPUT);
         }
         catch (NumberFormatException n) {
+            System.err.println("\nERROR: INVALID NUMBER FORMAT PROVIDED\nSYSTEM EXIT 3\n");
             System.exit(LENGTH_NUMBER_FORMAT_ERROR);
         }
 
