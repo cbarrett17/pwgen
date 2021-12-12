@@ -47,7 +47,7 @@ run-de_DE: compile
 
 # run a help command in two different languages
 run-demo1: compile
-	java -cp $(CLASSPATH) -Duser.language=fr -Duser.country=FR $(PROJECT) -j
+	java -cp $(CLASSPATH) -Duser.language=fr -Duser.country=FR $(PROJECT) -h
 	java -cp $(CLASSPATH) -Duser.language=it -Duser.country=IT $(PROJECT) -h
 
 # run a valid english run to show it works
