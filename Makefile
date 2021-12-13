@@ -22,7 +22,7 @@ PWGenTest.class: PWGenTest.java
 
 test: PWGenTest.class
 	# command to run Test class
-	echo "Testing..."
+	echo Testing...
 	java -cp $(CLASSPATH) org.junit.runner.JUnitCore PWGenTest
 
 run-en_US: compile
@@ -45,21 +45,19 @@ run-de_DE: compile
 	java -cp $(CLASSPATH) -Duser.language=de -Duser.country=DE $(PROJECT) -h
 	java -cp $(CLASSPATH) -Duser.language=de -Duser.country=DE $(PROJECT) $(DEFAULT_LENGTH_RUN)
 
-# run a help command in two different languages
-run-demo1: compile
-	java -cp $(CLASSPATH) -Duser.language=fr -Duser.country=FR $(PROJECT) -h
-	java -cp $(CLASSPATH) -Duser.language=it -Duser.country=IT $(PROJECT) -h
-
 # run a valid english run to show it works
-run-demo2: compile run-en_US
-	java -cp $(CLASSPATH) -Duser.language=en -Duser.country=US $(PROJECT) $(DEFAULT_LENGTH_RUN) -a
+run-demo1: run-en_US
 
-# run an invalid command to show the error handling
-run-demo3-pt1: compile
-	java -cp $(CLASSPATH) $(PROJECT) -j
+# run a help command in a different language
+run-demo2: compile
+	java -cp $(CLASSPATH) -Duser.language=fr -Duser.country=FR $(PROJECT) -h
 
-run-demo3-pt2: compile
-	java -cp $(CLASSPATH) $(PROJECT) -n -1
+# run invalid commands to show the error handling
+run-demo3-pt1: default
+	java -cp $(CLASSPATH) -Duser.language=en -Duser.country=US $(PROJECT) -j
 
-run-demo3-pt3: compile
-	java -cp $(CLASSPATH) $(PROJECT) -n HI
+run-demo3-pt2: default
+	java -cp $(CLASSPATH) -Duser.language=de -Duser.country=DE $(PROJECT) -n -1
+
+run-demo3-pt3: default
+	java -cp $(CLASSPATH) -Duser.language=it -Duser.country=IT $(PROJECT) -n HI
